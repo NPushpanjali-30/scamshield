@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://scamshield-api-fmou.onrender.com/api/:path*" },
+    { "source": "/api/:path*", "destination": "https://NEW-DOCKER-URL.onrender.com/api/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
