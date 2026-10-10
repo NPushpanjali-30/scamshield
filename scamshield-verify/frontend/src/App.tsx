@@ -304,7 +304,7 @@ function App() {
       </div>
       <footer className="main-footer"><span>Assistive assessment only. Verify sensitive requests independently.</span><span><CircleHelp size={13} /> Not an official government service</span></footer>
     </main>
-    <ChatPanel analysis={analysis} language={preferences.outputLanguage} userId={authUser.id} onRead={(value, language) => readAloud(value, language)} collapsed={chatCollapsed} onToggle={() => setChatCollapsed((value) => !value)} />
+    <ChatPanel analysis={analysis} language={preferences.outputLanguage} userId={authUser.id} onRead={(value, language) => readAloud(value, language)} collapsed={chatCollapsed} onToggle={() => setChatCollapsed((value) => !value)} onLanguage={(value) => updatePreference("outputLanguage", value)} />
     {!chatCollapsed && <button className="chat-scrim" aria-label="Close assistant" onClick={() => setChatCollapsed(true)} />}
   </div>;
 }

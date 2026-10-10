@@ -12,7 +12,10 @@ interface Props {
   onRead: (text: string, language: Language) => void;
   collapsed: boolean;
   onToggle: () => void;
+  onLanguage: (language: Language) => void;
 }
+
+const LANGS: [Language, string][] = [["en", "English"], ["kn", "ಕನ್ನಡ"], ["hi", "हिन्दी"]];
 
 const SUGGESTIONS = [
   "I shared an OTP — what now?",
@@ -26,7 +29,7 @@ function loadConversation(userId: number): ChatMessage[] {
   catch { return []; }
 }
 
-export default function ChatPanel({ analysis, language, userId, onRead, collapsed, onToggle }: Props) {
+export default function ChatPanel({ analysis, language, userId, onRead, collapsed, onToggle, onLanguage }: Props) {
   const [messages, setMessages] = useState<ChatMessage[]>(() => loadConversation(userId));
   const [question, setQuestion] = useState("");
   const [pending, setPending] = useState(false);
@@ -77,6 +80,7 @@ export default function ChatPanel({ analysis, language, userId, onRead, collapse
           <div ref={bottom} />
         </div>
         {error && <p className="inline-error" role="alert">{error}</p>}
+        <label className="chat-lang"><span>Answer in</span><select aria-label="Answer language" value={language} onChange={(event) => onLanguage(event.target.value as Language)}>{LANGS.map(([code, name]) => <option key={code} value={code}>{name}</option>)}</select></label>
         <form className="chat-compose" onSubmit={(event) => void send(event)}>
           <label className="sr-only" htmlFor="chat-question">Ask a cyber safety question</label>
           <textarea id="chat-question" rows={2} maxLength={500} value={question} onChange={(event) => setQuestion(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) void send(event); }} placeholder="Ask a question…" />
