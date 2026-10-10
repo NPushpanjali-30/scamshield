@@ -142,13 +142,13 @@ function App() {
     finally { setBusy(false); }
   }
 
-  async function speak(value: string, contentLanguage: Language = speechTextLanguage) {
+  async function speak(value: string, contentLanguage: Language = speechTextLanguage, targetLanguage?: Language) {
     const engine = window.speechSynthesis;
     if (!engine) { setSpeechNote("Speech synthesis is not supported in this browser."); return; }
     const requestId = ++speechRequest.current;
     engine.cancel(); ttsAudio.current?.pause(); setSpeechStatus("loading"); setSpeechNote(""); setSpeechText(value);
     let spokenText = value;
-    let language = preferences.speechLanguage;
+    let language = targetLanguage ?? preferences.speechLanguage;
     if (language !== contentLanguage) {
       try {
         const result = await post<{ text: string; language: string; translated: boolean }>("/api/speech/text", { text: value, speech_language: language });
@@ -218,10 +218,10 @@ function App() {
     setSpeechStatus("idle");
   }
 
-  function readAloud(value: string, language: Language) {
+  function readAloud(value: string, language: Language, matchVoice = false) {
     setSpeechText(value);
     setSpeechTextLanguage(language);
-    void speak(value, language);
+    void speak(value, language, matchVoice ? language : undefined);
   }
 
   async function logout() {
@@ -255,6 +255,16 @@ function App() {
 
   function navigate(next: Page) { setPage(next); setMobileNav(false); }
 
+  const speechToolbar = (
+        <div className="speech-toolbar" aria-label="Text-to-speech controls">
+          <label className="speech-select"><Headphones size={15} /><span className="sr-only">Speech language</span><select aria-label="Speech language" value={preferences.speechLanguage} onChange={(event) => updatePreference("speechLanguage", event.target.value as Language)}>{languageOptions.map(([code, label]) => <option key={code} value={code}>{label}</option>)}</select></label>
+          <button className="icon-button" title="Play selected result or response" aria-label="Play selected result or response" disabled={!speechText || speechStatus === "loading"} onClick={() => void speak(speechText, speechTextLanguage)}>{speechStatus === "loading" ? <LoaderCircle className="spin" size={15} /> : <Play size={15} />}</button>
+          <button className="icon-button" title="Pause speech" aria-label="Pause speech" disabled={speechStatus !== "speaking"} onClick={() => { window.speechSynthesis?.pause(); ttsAudio.current?.pause(); setSpeechStatus("paused"); }}><Pause size={15} /></button>
+          <button className="icon-button" title="Resume speech" aria-label="Resume speech" disabled={speechStatus !== "paused"} onClick={() => { window.speechSynthesis?.resume(); void ttsAudio.current?.play(); setSpeechStatus("speaking"); }}><AudioLines size={15} /></button>
+          <button className="icon-button" title="Stop speech" aria-label="Stop speech" disabled={speechStatus === "idle"} onClick={stopSpeech}><Square size={14} /></button>
+        </div>
+  );
+
   return <div className={`app-shell ${chatCollapsed ? "app-shell--chat-collapsed" : ""}`}>
     <aside className={`primary-nav ${mobileNav ? "primary-nav--open" : ""}`}>
       <div className="brand-lockup"><div className="brand-mark"><Shield size={21} /></div><div><strong>ScamShield</strong><span>VERIFY / INDIA</span></div></div>
@@ -273,13 +283,7 @@ function App() {
     <main className="main-column">
       <header className="topbar">
         <div className="topbar-start"><button className="icon-button mobile-menu" onClick={() => setMobileNav((open) => !open)} aria-label="Toggle navigation"><Menu size={19} /></button><div className="crumb"><span>SCAMSHIELD</span><ChevronRight size={14} /><b>{pageLabels[page]}</b></div></div>
-        <div className="speech-toolbar" aria-label="Text-to-speech controls">
-          <label className="speech-select"><Headphones size={15} /><span className="sr-only">Speech language</span><select aria-label="Speech language" value={preferences.speechLanguage} onChange={(event) => updatePreference("speechLanguage", event.target.value as Language)}>{languageOptions.map(([code, label]) => <option key={code} value={code}>{label}</option>)}</select></label>
-          <button className="icon-button" title="Play selected result or response" aria-label="Play selected result or response" disabled={!speechText || speechStatus === "loading"} onClick={() => void speak(speechText, speechTextLanguage)}>{speechStatus === "loading" ? <LoaderCircle className="spin" size={15} /> : <Play size={15} />}</button>
-          <button className="icon-button" title="Pause speech" aria-label="Pause speech" disabled={speechStatus !== "speaking"} onClick={() => { window.speechSynthesis?.pause(); ttsAudio.current?.pause(); setSpeechStatus("paused"); }}><Pause size={15} /></button>
-          <button className="icon-button" title="Resume speech" aria-label="Resume speech" disabled={speechStatus !== "paused"} onClick={() => { window.speechSynthesis?.resume(); void ttsAudio.current?.play(); setSpeechStatus("speaking"); }}><AudioLines size={15} /></button>
-          <button className="icon-button" title="Stop speech" aria-label="Stop speech" disabled={speechStatus === "idle"} onClick={stopSpeech}><Square size={14} /></button>
-        </div>
+        {chatCollapsed ? speechToolbar : <div className="speech-toolbar-spacer" />}
         <div className="chat-toggle user-session" title={`Signed in as ${authUser.email}`}><span className="user-greeting">{authUser.name}</span></div>
         <button className="icon-button logout-button" onClick={() => void logout()} disabled={authBusy} title="Log out" aria-label="Log out"><LogOut size={16} /></button>
         <button className="chat-toggle" onClick={() => setChatCollapsed((value) => !value)} aria-label={chatCollapsed ? "Open cyber safety assistant" : "Close cyber safety assistant"} aria-expanded={!chatCollapsed}><MessageSquareText size={16} /><span>Assistant</span>{chatCollapsed ? <ChevronLeft size={15} /> : <ChevronRight size={15} />}</button>
@@ -304,7 +308,7 @@ function App() {
       </div>
       <footer className="main-footer"><span>Assistive assessment only. Verify sensitive requests independently.</span><span><CircleHelp size={13} /> Not an official government service</span></footer>
     </main>
-    <ChatPanel analysis={analysis} language={preferences.outputLanguage} userId={authUser.id} onRead={(value, language) => readAloud(value, language)} collapsed={chatCollapsed} onToggle={() => setChatCollapsed((value) => !value)} onLanguage={(value) => { updatePreference("outputLanguage", value); updatePreference("speechLanguage", value); }} />
+    <ChatPanel analysis={analysis} language={preferences.outputLanguage} userId={authUser.id} onRead={(value, language) => readAloud(value, language, true)} collapsed={chatCollapsed} onToggle={() => setChatCollapsed((value) => !value)} speechControls={speechToolbar} onLanguage={(value) => { updatePreference("outputLanguage", value); updatePreference("speechLanguage", value); }} />
     {!chatCollapsed && <button className="chat-scrim" aria-label="Close assistant" onClick={() => setChatCollapsed(true)} />}
   </div>;
 }

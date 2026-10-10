@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { ArrowUp, Bot, PanelRightClose, PanelRightOpen, Trash2, Volume2 } from "lucide-react";
 import { post } from "./api";
 import type { Analysis, ChatMessage, Language } from "./types";
@@ -13,6 +13,7 @@ interface Props {
   collapsed: boolean;
   onToggle: () => void;
   onLanguage: (language: Language) => void;
+  speechControls?: ReactNode;
 }
 
 const LANGS: [Language, string][] = [["en", "English"], ["kn", "ಕನ್ನಡ"], ["hi", "हिन्दी"]];
@@ -29,7 +30,7 @@ function loadConversation(userId: number): ChatMessage[] {
   catch { return []; }
 }
 
-export default function ChatPanel({ analysis, language, userId, onRead, collapsed, onToggle, onLanguage }: Props) {
+export default function ChatPanel({ analysis, language, userId, onRead, collapsed, onToggle, onLanguage, speechControls }: Props) {
   const [messages, setMessages] = useState<ChatMessage[]>(() => loadConversation(userId));
   const [question, setQuestion] = useState("");
   const [pending, setPending] = useState(false);
@@ -68,6 +69,7 @@ export default function ChatPanel({ analysis, language, userId, onRead, collapse
         {!collapsed && <button className="icon-button" title="Collapse assistant" aria-label="Collapse assistant" onClick={onToggle}><PanelRightClose size={18} /></button>}
       </div>
       {!collapsed && <>
+        {speechControls && <div className="chat-speech">{speechControls}</div>}
         <div className="chat-thread" aria-live="polite">
           {messages.length === 0 && <div className="chat-welcome"><p>Ask about a message, reporting fraud, or staying safer online.</p><span>Answers use official sources where available.</span></div>}
           {messages.length === 0 && <div className="chat-suggest" aria-label="Suggested questions">{SUGGESTIONS.map((item) => <button type="button" key={item} disabled={pending} onClick={() => void send(null, item)}>{item}</button>)}</div>}
