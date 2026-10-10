@@ -1,0 +1,11 @@
+[
+{"name":"CID Cyber Crime Police Station (Karnataka), Carlton House","category":"cybercrime","lat":12.9815,"lon":77.5905,"address":"Carlton House, Palace Road, Bengaluru (approximate location)"},
+{"name":"Yelahanka Police Station","category":"police","lat":13.1007,"lon":77.5963,"address":"Yelahanka, Bengaluru (approximate location)"},
+{"name":"Yelahanka New Town Police Station","category":"police","lat":13.1003,"lon":77.5897,"address":"Yelahanka New Town, Bengaluru (approximate location)"},
+{"name":"Cubbon Park Police Station","category":"police","lat":12.9760,"lon":77.5929,"address":"Cubbon Park, Bengaluru (approximate location)"},
+{"name":"Bengaluru City Police Commissioner's Office","category":"police","lat":12.9830,"lon":77.5990,"address":"Infantry Road, Bengaluru (approximate location)"},
+{"name":"Victoria Hospital (Emergency)","category":"emergency","lat":12.9634,"lon":77.5736,"address":"Fort Road, Bengaluru (approximate location)"},
+{"name":"Bowring and Lady Curzon Hospital (Emergency)","category":"emergency","lat":12.9858,"lon":77.6055,"address":"Shivajinagar, Bengaluru (approximate location)"},
+{"name":"NIMHANS Hospital","category":"emergency","lat":12.9416,"lon":77.5957,"address":"Hosur Road, Bengaluru (approximate location)"},
+{"name":"K.C. General Hospital (Emergency)","category":"emergency","lat":12.9989,"lon":77.5711,"address":"Malleswaram, Bengaluru (approximate location)"}
+]

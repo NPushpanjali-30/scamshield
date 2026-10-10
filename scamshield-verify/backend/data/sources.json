@@ -1,0 +1,74 @@
+[
+ {
+  "id": "rbi-1",
+  "title": "RBI: never share card, PIN, OTP or password",
+  "org": "Reserve Bank of India",
+  "url": "https://www.rbi.org.in/",
+  "language": "en",
+  "category": "banking",
+  "text": "Customers should never share card numbers, PIN, CVV, OTP or passwords with anyone. Banks and the RBI do not ask for these details through calls, SMS, emails or links. Report fraud to your bank at once.",
+  "keywords": "bank account otp pin cvv password card blocked kyc ಬ್ಯಾಂಕ್ ಒಟಿಪಿ ಖಾತೆ",
+  "contradicts": "(otp|pin|cvv|password).*(share|send|give|verify|required|enter)|(share|send|give|verify|enter).*(otp|pin|cvv|password)",
+  "retrieved_on": "2026-10-04"
+ },
+ {
+  "id": "uidai-1",
+  "title": "UIDAI: protect Aadhaar details",
+  "org": "UIDAI",
+  "url": "https://uidai.gov.in/",
+  "language": "en",
+  "category": "identity",
+  "text": "Aadhaar details and OTPs should be shared only with trusted, authorised services. Verify any Aadhaar-related request on the official UIDAI website.",
+  "keywords": "aadhaar aadhar verification uid ಆಧಾರ್ आधार",
+  "contradicts": "",
+  "retrieved_on": "2026-10-04"
+ },
+ {
+  "id": "pib-1",
+  "title": "PIB: check government benefit claims on official channels",
+  "org": "Press Information Bureau, Government of India",
+  "url": "https://pib.gov.in/",
+  "language": "en",
+  "category": "government",
+  "text": "Government schemes and benefits are announced through official government websites and Press Information Bureau releases. Check any message offering money, jobs or benefits to citizens against these official channels before acting.",
+  "keywords": "government scheme every citizen rupees reward free money subsidy ಸರ್ಕಾರ",
+  "contradicts": "",
+  "retrieved_on": "2026-10-04"
+ },
+ {
+  "id": "cyber-1",
+  "title": "Report online financial fraud",
+  "org": "National Cyber Crime Reporting Portal",
+  "url": "https://cybercrime.gov.in/",
+  "language": "en",
+  "category": "reporting",
+  "text": "Victims of online financial fraud can report on the National Cyber Crime Reporting Portal or call the national helpline 1930 as soon as possible.",
+  "keywords": "report fraud scam helpline phishing cheated lost money",
+  "contradicts": "",
+  "retrieved_on": "2026-10-04"
+ },
+ {
+  "id": "cert-1",
+  "title": "CERT-In: be careful with links in unexpected messages",
+  "org": "CERT-In",
+  "url": "https://www.cert-in.org.in/",
+  "language": "en",
+  "category": "phishing",
+  "text": "Do not click links in unexpected messages. Check the web address carefully, use official apps or websites, and report phishing to CERT-In.",
+  "keywords": "link click phishing website domain url download",
+  "contradicts": "",
+  "retrieved_on": "2026-10-04"
+ },
+ {
+  "id": "itd-1",
+  "title": "Income Tax Department: check refunds on the official portal",
+  "org": "Income Tax Department",
+  "url": "https://www.incometax.gov.in/",
+  "language": "en",
+  "category": "government",
+  "text": "The Income Tax Department communicates through its official e-filing portal and registered contacts. Check refund status on the official portal rather than links in messages.",
+  "keywords": "income tax refund pan itr",
+  "contradicts": "",
+  "retrieved_on": "2026-10-04"
+ }
+]

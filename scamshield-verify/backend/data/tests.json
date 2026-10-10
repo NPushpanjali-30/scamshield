@@ -1,0 +1,98 @@
+[
+ {
+  "label": "scam",
+  "language": "en",
+  "category": "Bank OTP scam",
+  "text": "Dear customer, your SBI account will be blocked today. Verify KYC immediately at http://sbi-kyc-update.xyz and share your OTP."
+ },
+ {
+  "label": "scam",
+  "language": "en",
+  "category": "Government reward",
+  "text": "Government is giving Rs 50,000 to every citizen. Click www.free-money.top and verify your Aadhaar immediately."
+ },
+ {
+  "label": "scam",
+  "language": "en",
+  "category": "Delivery fraud",
+  "text": "India Post: your parcel is held. Pay a delivery fee of Rs 25 at http://indiapost-track.top to release it."
+ },
+ {
+  "label": "scam",
+  "language": "en",
+  "category": "Job-fee scam",
+  "text": "Job offer! Pay registration fee of Rs 999 immediately to confirm your joining."
+ },
+ {
+  "label": "scam",
+  "language": "en",
+  "category": "Government reward",
+  "text": "Congratulations! You have won a lottery prize of Rs 25,00,000. Send your bank details to claim."
+ },
+ {
+  "label": "scam",
+  "language": "kn",
+  "category": "Bank OTP scam",
+  "text": "ನಿಮ್ಮ ಖಾತೆ ಬ್ಲಾಕ್ ಆಗುತ್ತದೆ. ತಕ್ಷಣ ಒಟಿಪಿ ನೀಡಿ."
+ },
+ {
+  "label": "scam",
+  "language": "kn",
+  "category": "Government reward",
+  "text": "ಅಭಿನಂದನೆಗಳು! ನೀವು ₹50,000 ಬಹುಮಾನ ಗೆದ್ದಿದ್ದೀರಿ. ಕ್ಲಿಕ್ ಮಾಡಿ: http://claim-prize.xyz"
+ },
+ {
+  "label": "scam",
+  "language": "kn",
+  "category": "Fake KYC",
+  "text": "ನಿಮ್ಮ ಕೆವೈಸಿ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ ಇಲ್ಲದಿದ್ದರೆ ಖಾತೆ ಬ್ಲಾಕ್ ಆಗುತ್ತದೆ. http://kyc-update-now.xyz"
+ },
+ {
+  "label": "legit",
+  "language": "en",
+  "category": "Legitimate",
+  "text": "Your OTP is 482913. Do not share it with anyone. - SBI"
+ },
+ {
+  "label": "legit",
+  "language": "en",
+  "category": "Legitimate",
+  "text": "Your Amazon order has shipped and will arrive tomorrow. Track it at https://www.amazon.in/orders"
+ },
+ {
+  "label": "legit",
+  "language": "en",
+  "category": "Legitimate",
+  "text": "Meeting moved to 4 PM tomorrow in room 204."
+ },
+ {
+  "label": "legit",
+  "language": "en",
+  "category": "Legitimate",
+  "text": "Rs 500 debited from A/c XX1234 on 03-Oct. If this was not you, call your bank branch."
+ },
+ {
+  "label": "legit",
+  "language": "en",
+  "category": "Legitimate",
+  "text": "Reminder: your electricity bill of Rs 450 is due on 10 Oct. Pay through the official app or website."
+ },
+ {
+  "label": "legit",
+  "language": "kn",
+  "category": "Legitimate",
+  "text": "ಇಂದು ಸಂಜೆ 5 ಗಂಟೆಗೆ ಕಾಲೇಜಿನಲ್ಲಿ ಸಭೆ ಇದೆ."
+ },
+ {
+  "label": "legit",
+  "language": "kn",
+  "category": "Legitimate",
+  "text": "ನಿಮ್ಮ ಒಟಿಪಿ 482913. ಯಾರೊಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ."
+ },
+ {
+  "label": "legit",
+  "language": "en",
+  "category": "Legitimate",
+  "text": "Hi, are we still meeting for lunch at 1 PM?"
+ }
+]
